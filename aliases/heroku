@@ -1,0 +1,35 @@
+# Search heroku apps
+function heroku_app() {
+    heroku apps:table --filter="App Name=$1" $2
+}
+alias ha=heroku_app
+
+# Get a environment variable for the app
+function heroku_config() {
+    heroku config:get $2 --app $1
+}
+alias hv=heroku_config
+
+function heroku_config_all() {
+    heroku config -s -a $1 > all.env
+}
+alias hva=heroku_config_all
+
+
+# Bash into a heroku app
+function heroku_bash() {
+    heroku run bash --app $1
+}
+alias hrb=heroku_bash
+
+# Connect to a redis instance for app
+function heroku_redis() {
+    heroku redis:cli --app $1
+}
+alias hredis=heroku_redis
+
+# Connect to a redis instance for app
+function heroku_clear_build_cache() {
+    heroku builds:cache:purge --app $1 --confirm $1
+}
+alias hbcp=heroku_clear_build_cache

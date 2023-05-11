@@ -1,0 +1,36 @@
+# Quick way to edit & update zshrc
+alias zshedit='nano ~/.zshrc'
+alias zshsave='source ~/.zshrc'
+
+# Fixes issue where sudo stops working if a command is interupted
+alias fixsudo='faillock --user jack --reset'
+
+# Fix perms
+function fixPerms() {
+    sudo chown -R jack:http $1
+    sudo chmod -R 770 $1
+    if [ -d "$1/.git" ]; then
+        cd $1
+        git config core.fileMode false
+        cd -
+    else
+        echo "Directory is not a Git repository. Skipping git config..."
+    fi
+}
+alias fixperms=fixPerms
+
+
+# Restarts all systemd services for websites
+function lampRestart() {
+    sudo systemctl restart nginx
+    sudo systemctl restart php-fpm
+    sudo systemctl restart php74-fpm
+}
+alias lamprestart=lampRestart
+
+
+# Php7.4
+alias php74='/usr/bin/php74'
+alias composer74='php74 /usr/local/bin/composer'
+alias phpunit74='/usr/bin/php74 ./vendor/bin/phpunit'
+alias phpunit='/usr/bin/php ./vendor/bin/phpunit'

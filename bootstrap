@@ -1,0 +1,20 @@
+# Check if Gum is installed
+if ! command -v gum &> /dev/null; then
+    echo "Error: Gum is not installed. Some scripts will not work."
+    echo "To install Gum, run:"
+    echo "curl -sSL https://github.com/charmbracelet/gum/releases/download/v0.1.0/gum_0.1.0_linux_amd64.tar.gz | tar xzv -C /usr/local/bin"
+    echo "Or 'sudo pacman -S gum' if you use Arch, btw"
+fi
+
+#Run setup script again
+alias jsetup=./setup.sh
+
+#Nginx scripts
+alias jnginx=./nginx/main.sh
+
+#Env scripts
+alias jenv=./env/set_env.sh
+
+
+source ./aliases/heroku
+source ./aliases/other
