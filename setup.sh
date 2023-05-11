@@ -21,6 +21,7 @@ if grep -q "source $SCRIPT_DIR/$BOOTSTRAP" ~/.zshrc; then
 else
   echo "" >> ~/.zshrc
   echo "# Link to Jw scripts" >> ~/.zshrc
+  echo "export jscripts=\"$SCRIPT_DIR\"" >> ~/.zshrc
   echo "source $SCRIPT_DIR/$BOOTSTRAP" >> ~/.zshrc
   echo "" >> ~/.zshrc
   echo "Alias created. Either run 'source ~/.zshrc' or restart terminal."

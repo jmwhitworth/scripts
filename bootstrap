@@ -6,15 +6,11 @@ if ! command -v gum &> /dev/null; then
     echo "Or 'sudo pacman -S gum' if you use Arch, btw"
 fi
 
-#Run setup script again
-alias jsetup=./setup.sh
 
-#Nginx scripts
-alias jnginx=./nginx/main.sh
-
-#Env scripts
-alias jenv=./env/set_env.sh
+alias jsetup=$jscripts/setup.sh
+alias jnginx=$jscripts/nginx/main.sh
+alias jenv=$jscripts/env/set_env.sh
 
 
-source ./aliases/heroku
-source ./aliases/other
+source $jscripts/aliases/heroku
+source $jscripts/aliases/other
