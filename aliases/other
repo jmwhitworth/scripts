@@ -2,17 +2,20 @@
 alias zshedit='nano ~/.zshrc'
 alias zshsave='source ~/.zshrc'
 
+
 # Fixes issue where sudo stops working if a command is interupted
 alias fixsudo='faillock --user jack --reset'
 
-# Fix perms
+
+# Sets the permission of all files within a directory to be editable by both me and the http group
 function fixPerms() {
-    sudo chown -R jack:http $1
-    sudo chmod -R 770 $1
-    if [ -d "$1/.git" ]; then
-        cd $1
+    local dir=${1:-.}  # Set the default argument to '.'
+    sudo chown -R jack:http "$dir"
+    sudo chmod -R 770 "$dir"
+    if [ -d "$dir/.git" ]; then
+        pushd "$dir" > /dev/null
         git config core.fileMode false
-        cd -
+        popd > /dev/null
     else
         echo "Directory is not a Git repository. Skipping git config..."
     fi
