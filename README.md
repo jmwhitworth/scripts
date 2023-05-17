@@ -13,3 +13,5 @@ sudo chmod +x ./setup.sh
 ```bash
 ./setup.sh
 ```
+
+Depends on Gum: https://github.com/charmbracelet/gum
