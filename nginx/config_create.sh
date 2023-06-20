@@ -6,6 +6,13 @@ sites_enabled_dir="/etc/nginx/sites-enabled"
 
 app_name=$(gum input --placeholder "Enter the app name (this will also be the path):")
 
+# If gum choose was interrupted (e.g., by Ctrl+C), exit the script
+if [ $? -ne 0 ]; then
+    echo "Operation was interrupted. Exiting..."
+    exit 1
+fi
+
+
 sites_available_config="${sites_available_dir}/${app_name}"
 sites_enabled_config="${sites_enabled_dir}/${app_name}"
 
@@ -21,6 +28,13 @@ case "$php_version_choice" in
         ;;
 esac
 
+# If gum choose was interrupted (e.g., by Ctrl+C), exit the script
+if [ $? -ne 0 ]; then
+    echo "Operation was interrupted. Exiting..."
+    exit 1
+fi
+
+
 echo "Does this project use a /public directory?"
 public_dir_choice=$(gum choose "Yes" "No")
 case "$public_dir_choice" in
@@ -31,6 +45,13 @@ case "$public_dir_choice" in
         public_dir=""
         ;;
 esac
+
+# If gum choose was interrupted (e.g., by Ctrl+C), exit the script
+if [ $? -ne 0 ]; then
+    echo "Operation was interrupted. Exiting..."
+    exit 1
+fi
+
 
 
 if [ -f "${sites_available_dir}/${app_name}" ] || [ -f "${sites_enabled_dir}/${app_name}" ]; then
