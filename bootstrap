@@ -10,6 +10,7 @@ fi
 alias jsetup=$jscripts/setup.sh
 alias jnginx=$jscripts/nginx/main.sh
 alias jenv=$jscripts/env/set_env.sh
+alias jopera="opera http://\$(basename \$PWD).localhost &> /dev/null &"
 
 
 source $jscripts/aliases/heroku
