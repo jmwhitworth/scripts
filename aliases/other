@@ -10,8 +10,8 @@ alias fixsudo='faillock --user jack --reset'
 # Sets the permission of all files within a directory to be editable by both me and the http group
 function fixPerms() {
     local dir=${1:-.}  # Set the default argument to '.'
-    sudo chown -R jack:http "$dir"
-    sudo chmod -R 770 "$dir"
+    sudo chown -R "$USER":http "$dir"
+    sudo chmod -R 775 "$dir"
     if [ -d "$dir/.git" ]; then
         pushd "$dir" > /dev/null
         git config core.fileMode false
@@ -37,3 +37,4 @@ alias php74='/usr/bin/php74'
 alias composer74='php74 /usr/local/bin/composer'
 alias phpunit74='/usr/bin/php74 ./vendor/bin/phpunit'
 alias phpunit='/usr/bin/php ./vendor/bin/phpunit'
+alias wp74='php74 ./wp-cli.phar'
