@@ -4,7 +4,7 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Selct nginx script:"
-choice=$(gum choose "Create config" "Remove config" "List all configs")
+choice=$(gum choose "Create config" "Remove config" "List all configs" "Edit a config")
 
 case "$choice" in
     "Create config")
@@ -15,5 +15,8 @@ case "$choice" in
         ;;
     "List all configs")
         bash $SCRIPT_DIR/config_list.sh
+        ;;
+    "Edit a config")
+        bash $SCRIPT_DIR/config_edit.sh
         ;;
 esac
